@@ -1,0 +1,12 @@
+# Name that will be referenced do much more with it programmatically  
+name: invoke-deploy 
+on:
+  repository_dispatch: 
+    types: [deploy-service]
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello
+        run: echo "Hello there!"
