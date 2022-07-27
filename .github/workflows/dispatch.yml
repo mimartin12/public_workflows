@@ -43,7 +43,7 @@ jobs:
             BRANCH_NAME=$(echo "$GITHUB_REF" | sed "s#refs/heads/##g")
           fi
             
-            
+          echo $BRANCH_NAME
           echo "::set-output name=branch_name::$BRANCH_NAME"
 
           mkdir publish
