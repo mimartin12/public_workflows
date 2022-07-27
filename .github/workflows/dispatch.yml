@@ -3,6 +3,7 @@ name: invoke-deploy
 on:
   repository_dispatch: 
     types: [deploy-service]
+  workflow_dispatch: {}
 jobs:
   test:
     name: Say Hello
@@ -46,3 +47,10 @@ jobs:
           echo "::set-output name=branch_name::$BRANCH_NAME"
 
           mkdir publish
+          
+      - name: Release
+        env: 
+          BRANCH: ${{ steps.setup.outputs.branch_name }}
+        run: |
+          echo "Deploying branch: $BRANCH"
+        
