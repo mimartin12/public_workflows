@@ -28,15 +28,21 @@ deploy:
     steps:
       - name: Setup
         id: setup
+        env:
+          BRANCH_NAME: {{ github.event.client_payload.branch }}
         run: |
           NAME_LOWER=$(echo "${{ matrix.name }}" | awk '{print tolower($0)}')
           echo "Matrix name: ${{ matrix.name }}"
           echo "NAME_LOWER: $NAME_LOWER"
           echo "::set-output name=name_lower::$NAME_LOWER"
-
-          BRANCH_NAME=$(echo "$GITHUB_REF" | sed "s#refs/heads/##g")
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "BRANCH_NAME: $BRANCH_NAME"
+          
+          if [[ -v $BRANCH_NAME  ]]; then
+            BRANCH_NAME=$(echo $BRANCH_NAME | sed "s#refs/heads/##g")
+          else
+            BRANCH_NAME=$(echo "$GITHUB_REF" | sed "s#refs/heads/##g")
+          fi
+            
+            
           echo "::set-output name=branch_name::$BRANCH_NAME"
 
           mkdir publish
