@@ -12,7 +12,7 @@ jobs:
         run: echo "Hello there!"
 
 
-deploy:
+  deploy:
     name: Deploy
     runs-on: ubuntu-20.04
     if: always()
