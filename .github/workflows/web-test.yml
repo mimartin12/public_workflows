@@ -88,14 +88,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
-
-      - name: Set up Node
-        uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93  # v3.4.1
-        with:
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-          node-version: "16"
-
+        
       - name: Print environment
         run: |
           whoami
